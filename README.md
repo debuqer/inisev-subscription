@@ -48,3 +48,12 @@ php artisan queue:work
 https://www.postman.com/debuqer/workspace/inisev/overview
 
 
+
+
+**Below note added 1 day after submitting the task**
+
+```php
+return UserStory::query()->whereNull('sent_at')->lazy(1);
+```
+
+**Note:** This was set to load user stories 1 by 1 which is not a good option in production(1 query per user story), so in the real world, I'll change this line to read the chunk size from config. Using lazy can optimize memory usage since it uses PHP generators.
